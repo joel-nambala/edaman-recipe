@@ -156,8 +156,6 @@ const getRecipes = async function (e) {
     console.log(error);
   }
 
-  let allButtons = [...document.querySelectorAll('.info-bookmark')];
-
   searchInput.value = '';
 };
 
@@ -174,6 +172,8 @@ recipeDOM.addEventListener('click', function (e) {
     e.target.textContent = 'bookmarked';
     e.target.disabled = true;
     boookmarking = false;
+
+    localStorage.setItem('edaman', JSON.stringify(bookmarks));
 
     // Update the bookmarks UI
     clearBookmarkDOM();
@@ -201,6 +201,7 @@ window.addEventListener('load', function (e) {
   bookmarks = JSON.parse(localStorage.getItem('edaman'));
 
   if (bookmarks.length < 0) return;
+  console.log(bookmarks);
   clearBookmarkDOM();
   displayBookmarks(bookmarks);
 });
